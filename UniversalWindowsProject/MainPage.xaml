@@ -9,5 +9,45 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<Button Content="Click Me Please!!!!!!!!!!!!!"></Button>
+
+		<Canvas Height="600" Width="600">
+
+			<!-- Draws an oval with a blue interior. -->
+			<Ellipse
+				Width="200"
+				Height="200"
+				Fill="Red"
+				Canvas.Left="100"
+				Canvas.Top="80" />
+
+			<Ellipse
+				Width="200"
+				Height="200"
+				Fill="Green"
+				Canvas.Left="310"
+				Canvas.Top="80" />
+
+			<Ellipse
+				Width="200"
+				Height="200"
+				Fill="Yellow"
+				Canvas.Left="100"
+				Canvas.Top="315" />
+
+			<Ellipse
+				Width="200"
+				Height="200"
+				Fill="Blue"
+				Canvas.Left="310"
+				Canvas.Top="315" />
+			
+
+			
+
+			<!-- Draws an oval with a blue interior and a black outline. -->
+			
+
+		</Canvas>
+
 	</Grid>
 </Page>
