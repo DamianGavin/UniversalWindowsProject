@@ -17,7 +17,7 @@ namespace Simon.Model
         public int TurnNo => history.Count;
 
 
-        public Quadrant GetAt(int i)
+        private Quadrant GetAt(int i)
         {
             return quadrants[i];
         }
@@ -58,7 +58,7 @@ namespace Simon.Model
 		    {
 			    quadrant.MakeNoise();
 			    quadrant.Brighten();
-			    await Task.Delay(7000);
+			    await Task.Delay(1200);
 			    quadrant.ResetColour();
 				// wait some amount time
 			}

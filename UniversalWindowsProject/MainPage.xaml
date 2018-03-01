@@ -9,7 +9,7 @@
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" Text="sXamlon" FontSize="50" />
-		<Button Content="Tune" x:Name="StartButton" Click="StartButton_OnClick" />
+		<Button Content="Start Game" x:Name="StartButton" Click="StartButton_OnClick" />
 
 		<Canvas Height="600" Width="600">
 			<!-- Draws an oval with a blue interior. -->

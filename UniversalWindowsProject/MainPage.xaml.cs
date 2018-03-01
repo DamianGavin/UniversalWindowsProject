@@ -35,10 +35,10 @@ namespace UniversalWindowsProject
         {
             this.InitializeComponent();
 	        userSelected = new List<int>();
-	        _redQuadrant = new Quadrant(Red, "1.mp3");
-	        _greenQuadrant = new Quadrant(Green, "3.mp3");
-	        _blueQuadrant = new Quadrant(Blue, "5.mp3");
-	        _yellowQuadrant = new Quadrant(Yellow, "7.mp3");
+	        _redQuadrant = new Quadrant(Red, "Red.mp3");
+	        _greenQuadrant = new Quadrant(Green, "Green.mp3");
+	        _blueQuadrant = new Quadrant(Blue, "Blue.mp3");
+	        _yellowQuadrant = new Quadrant(Yellow, "Yellow.mp3");
 
 	        var quadrants = new List<Quadrant>
 	        {
