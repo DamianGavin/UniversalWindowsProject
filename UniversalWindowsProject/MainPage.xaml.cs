@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -17,6 +18,7 @@ using Windows.Media.Core;
 using Simon.Model;
 using UniversalWindowsProject.Model_simon;
 
+
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace UniversalWindowsProject
@@ -29,7 +31,12 @@ namespace UniversalWindowsProject
 	    private readonly Quadrant _yellowQuadrant;
 	    private readonly Simon.Model.Simon _simon;
 	    private List<int> userSelected;
-		
+
+
+	    private readonly int RED_INDEX = 0;
+	    private readonly int GREEN_INDEX = 1;
+	    private readonly int YELLOW_INDEX = 2;
+	    private readonly int BLUE_INDEX = 3;
 
         public MainPage()
         {
@@ -51,45 +58,57 @@ namespace UniversalWindowsProject
 
 	        _simon = new Simon.Model.Simon(quadrants);
 
-			// call this on submit button
-	        _simon.DoesMatch(new List<int> {1, 2});
-
-//	        var storage = new Storage();
-//			storage.SaveHighScore(29);
-//
-//	        int score = storage.GetHighScore();
 
         }
 
-	    private void ClickedQuadrant(Quadrant q)
+
+	    private async void QuadrantClicked(int index)
 	    {
-			q.MakeNoise();
-			q.Brighten();
-	    }
+		    userSelected.Add(index);
+		    _simon.Tap(index);
+
+		    if (userSelected.Count == _simon.TurnNo)
+		    {
+			    if (_simon.SimonsTurn)
+			    {
+				    return;
+			    }
+			    // check to see if the user's clicks matched the history of simon
+			    bool userGotItRight = _simon.DoesMatch(userSelected);
+			    if (userGotItRight)
+			    {
+				    TextBlock.Text = "Correct";
+			    }
+			    else
+			    {
+				    TextBlock.Text = "Wrong!";
+				    _simon.Reset();
+			    }
+
+			    await Task.Delay(5000);
+				userSelected.Clear();
+				_simon.Start();
+			}
+		}
 
 	    private void Red_click(object sender, RoutedEventArgs e)
 	    {
-			userSelected.Add(0);
-			// make the tile flash
-			// play sound
-			ClickedQuadrant(_redQuadrant);
-		}
+		    QuadrantClicked(RED_INDEX);
+	    }
 
 	    private void Green_click(object sender, TappedRoutedEventArgs e)
 	    {
-			ClickedQuadrant(_greenQuadrant);
-
+			QuadrantClicked(GREEN_INDEX);
 		}
 
 	    private void Yellow_click(object sender, TappedRoutedEventArgs e)
 	    {
-		    ClickedQuadrant(_yellowQuadrant);
-			
-	    }
+			QuadrantClicked(YELLOW_INDEX);
+		}
 
-	    private void Blue_click(object sender, TappedRoutedEventArgs e)
+		private void Blue_click(object sender, TappedRoutedEventArgs e)
 	    {
-			ClickedQuadrant(_blueQuadrant);
+		    QuadrantClicked(BLUE_INDEX);
 		}
 
 	    private void StartButton_OnClick(object sender, RoutedEventArgs e)
@@ -97,14 +116,7 @@ namespace UniversalWindowsProject
 		    _simon.Start();
 	    }
 
-		/*
-		 *Verify correct
-		 *
-		 * get the list of ints from user
-		 * pass it into simon.DoesMatch()
-		 * in there, verify all the ints in the list match up with the history values.
-		 * return true/false
-		 *
-		 */
+	
+
     }
 }

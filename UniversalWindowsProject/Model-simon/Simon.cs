@@ -11,10 +11,12 @@ namespace Simon.Model
         private List<Quadrant> history;
         private List<Quadrant> quadrants;
 	    private readonly Random _rnd;
-	    private bool computerTurn = true;
+		// create getter and sett and also assign a default value
+	    public bool SimonsTurn { get; set; } = true;
+	    private int HighScore { get; set; }
 
 
-        public int TurnNo => history.Count;
+	    public int TurnNo => history.Count;
 
 
         private Quadrant GetAt(int i)
@@ -25,14 +27,10 @@ namespace Simon.Model
         public Simon(List<Quadrant> quadrants)
         {
 	        _rnd = new Random();
-//            this.history = new List<Quadrant>();
+            this.history = new List<Quadrant>();
 	
             this.quadrants = quadrants;
-	        history = new List<Quadrant>
-	        {
-		        GetAt(1),
-		        GetAt(3)
-	        };
+
 		}
 
 	    public async void Start()
@@ -50,7 +48,8 @@ namespace Simon.Model
 
 	    public async void ComputerTurn()
 	    {
-		    
+
+		    SimonsTurn = true;
 		    // adds it to history.
 		    history.Add(NextQuadrant());
 		    // plays entire history
@@ -58,20 +57,24 @@ namespace Simon.Model
 		    {
 			    quadrant.MakeNoise();
 			    quadrant.Brighten();
-			    await Task.Delay(1200);
+			    // wait some amount time
+				await Task.Delay(1200);
 			    quadrant.ResetColour();
-				// wait some amount time
+				
 			}
 
 			// toggle to allow player turn
-		    computerTurn = false;
+		    SimonsTurn = false;
 
 	    }
 
 		
 	    public bool DoesMatch(List<int> choices)
 	    {
-
+		    if (choices.Count == 0 || choices.Count != history.Count)
+		    {
+			    return false;
+		    }
 			// look at everything in the history
 			// and see if the choices line up.
 
@@ -83,6 +86,7 @@ namespace Simon.Model
 		    foreach (var quad in history)
 		    {
 
+			
 			    if (GetAt(choices[choiceIndex]) != quad)
 			    {
 				    return false;
@@ -90,10 +94,6 @@ namespace Simon.Model
 
 			    choiceIndex++;
 		    }
-			
-
-//		    var quadrants = choices.Select(GetAt).ToList();
-//		    return quadrants.Equals(history);
 		    return true;
         }
 
@@ -110,5 +110,15 @@ namespace Simon.Model
 	        var quad = quadrants[index];
 	        return quad;
         }
+
+	    public async void Tap(int index)
+	    {
+		    var quadrant = GetAt(index);
+			quadrant.MakeNoise();
+		    quadrant.Brighten();
+		    // wait some amount time
+		    await Task.Delay(1200);
+		    quadrant.ResetColour();
+		}
     }
 }

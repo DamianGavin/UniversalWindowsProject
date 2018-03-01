@@ -8,32 +8,30 @@ using Windows.UI.Xaml.Shapes;
 
 namespace Simon.Model
 {
-    class Quadrant
-    {
-        private Ellipse _shape;
-	    private MediaPlayer player;
-	    private bool playing;
-	    private string _soundName;
-	    private Brush oldBrush;
+	class Quadrant
+	{
+		private Ellipse _shape;
+		private MediaPlayer player;
+		private bool playing;
+		private string _soundName;
+		private Brush oldBrush;
 
-	    public Quadrant(Ellipse shape, string soundName)
-	    {
-		    _shape = shape;
-		    oldBrush = shape.Fill;
-		    _soundName = soundName;
+		public Quadrant(Ellipse shape, string soundName)
+		{
+			_shape = shape;
+			oldBrush = shape.Fill;
+			_soundName = soundName;
 			player = new MediaPlayer();
-	    }
-	    // Sound
+		}
+		// Sound
 
 		public async void MakeNoise()
-        {
-
-
+		{
 			var folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(@"Assets");
-	        var file = await folder.GetFileAsync(_soundName);
+			var file = await folder.GetFileAsync(_soundName);
 
-	        player.AutoPlay = false;
-	        player.Source = MediaSource.CreateFromStorageFile(file);
+			player.AutoPlay = false;
+			player.Source = MediaSource.CreateFromStorageFile(file);
 
 //	        if (playing)
 //	        {
@@ -42,21 +40,38 @@ namespace Simon.Model
 //	        }
 //	        else
 //	        {
-		        player.Play();
+			player.Play();
 //		        playing = true;
 //	        }
-
 		}
 
-        public void Brighten()
-        {
-			_shape.Fill = new SolidColorBrush(Colors.Wheat);
-        }
+		public void Brighten()
+		{
+			Color c1;
+			switch (_shape.Tag.ToString())
+			{
+				case "B":
+					c1 = Colors.Blue;
+					break;
+				case "Y":
+					c1 = Colors.Yellow;
+					break;
+				case "R":
+					c1 = Colors.Red;
+					break;
+				case "G":
+					c1 = Colors.Green;
+					break;
+			}
 
-	    public void ResetColour()
-	    {
-		    _shape.Fill = oldBrush;
-	    }
+			Color c2 = Color.FromArgb(c1.A,
+				(byte) (c1.R * 0.6), (byte) (c1.G * 0.6), (byte) (c1.B * 0.6));
+			_shape.Fill = new SolidColorBrush(c2);
+		}
 
-    }
+		public void ResetColour()
+		{
+			_shape.Fill = oldBrush;
+		}
+	}
 }
