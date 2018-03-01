@@ -7,6 +7,7 @@ namespace Simon.Model
     {
         private List<Quadrant> history;
         private List<Quadrant> quadrants;
+	    private readonly Random _rnd;
 
 
         public int TurnNo => history.Count;
@@ -19,12 +20,31 @@ namespace Simon.Model
 
         public Simon(List<Quadrant> quadrants)
         {
+	        _rnd = new Random();
             this.history = new List<Quadrant>();
             this.quadrants = quadrants;
         }
 
+	    public void Start()
+	    {
+			// simon picks random element from quadrants
+		    var index = _rnd.Next(quadrants.Count); // generate number between 0-3
+		    var quad = quadrants[index];
+		    // adds it to history.
+			history.Add(quad);
+		    // plays entire history
+		    foreach (var quadrant in history)
+		    {
+				quadrant.MakeNoise();
+				quadrant.Brighten();
 
-        public Boolean DoesMatch(List<int> choices)
+				// wait some amount time
+		    }
+
+	    }
+
+
+	    public Boolean DoesMatch(List<int> choices)
         {
             return false;
         }

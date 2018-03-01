@@ -26,6 +26,7 @@ namespace UniversalWindowsProject
 	    private readonly Quadrant _greenQuadrant;
 	    private readonly Quadrant _blueQuadrant;
 	    private readonly Quadrant _yellowQuadrant;
+	    private readonly Simon.Model.Simon _simon;
 		
 
         public MainPage()
@@ -35,7 +36,17 @@ namespace UniversalWindowsProject
 	        _greenQuadrant = new Quadrant(Green, "3.mp3");
 	        _blueQuadrant = new Quadrant(Blue, "5.mp3");
 	        _yellowQuadrant = new Quadrant(Yellow, "7.mp3");
-	        
+
+	        var quadrants = new List<Quadrant>
+	        {
+				_redQuadrant,
+				_greenQuadrant,
+				_blueQuadrant,
+		        _yellowQuadrant
+			};
+
+	        _simon = new Simon.Model.Simon(quadrants);
+
         }
 
 	    private void ClickedQuadrant(Quadrant q)
@@ -65,5 +76,10 @@ namespace UniversalWindowsProject
 	    {
 			ClickedQuadrant(_blueQuadrant);
 		}
+
+	    private void StartButton_OnClick(object sender, RoutedEventArgs e)
+	    {
+		    _simon.Start();
+	    }
     }
 }
