@@ -2,6 +2,7 @@
 using Windows.Media.Core;
 using Windows.Media.Playback;
 using Windows.UI;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
 
@@ -13,10 +14,12 @@ namespace Simon.Model
 	    private MediaPlayer player;
 	    private bool playing;
 	    private string _soundName;
+	    private Brush oldBrush;
 
 	    public Quadrant(Ellipse shape, string soundName)
 	    {
 		    _shape = shape;
+		    oldBrush = shape.Fill;
 		    _soundName = soundName;
 			player = new MediaPlayer();
 	    }
@@ -32,16 +35,16 @@ namespace Simon.Model
 	        player.AutoPlay = false;
 	        player.Source = MediaSource.CreateFromStorageFile(file);
 
-	        if (playing)
-	        {
-		        player.Source = null;
-		        playing = false;
-	        }
-	        else
-	        {
+//	        if (playing)
+//	        {
+//		        player.Source = null;
+//		        playing = false;
+//	        }
+//	        else
+//	        {
 		        player.Play();
-		        playing = true;
-	        }
+//		        playing = true;
+//	        }
 
 		}
 
@@ -49,6 +52,11 @@ namespace Simon.Model
         {
 			_shape.Fill = new SolidColorBrush(Colors.Wheat);
         }
+
+	    public void ResetColour()
+	    {
+		    _shape.Fill = oldBrush;
+	    }
 
     }
 }
