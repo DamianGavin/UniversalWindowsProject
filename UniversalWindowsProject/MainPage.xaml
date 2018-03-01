@@ -8,41 +8,42 @@
 	mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" Text="sXamlon" FontSize="50"/>
-		<Button Content="Tune" x:Name="myButton" Click="Button_click"></Button>
+		<TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" Text="sXamlon" FontSize="50" />
+		<Button Content="Tune" x:Name="myButton" />
 
 		<Canvas Height="600" Width="600">
 			<!-- Draws an oval with a blue interior. -->
-			<Ellipse x:Name="red"
+			<Ellipse x:Name="Red"
+			         Tapped="Red_click"
+			         Width="200"
+			         Height="200"
+			         Fill="Red"
+			         Canvas.Left="100"
+			         Canvas.Top="80" />
 
-				Width="200"
-				Height="200"
-				Fill="Red"
-				Canvas.Left="100"
-				Canvas.Top="80" />
+			<Ellipse x:Name="Green"
+			         Tapped="Green_click"
+			         Width="200"
+			         Height="200"
+			         Fill="Green"
+			         Canvas.Left="310"
+			         Canvas.Top="80" />
 
-			<Ellipse x:Name="green"
-				Width="200"
-				Height="200"
-				Fill="Green"
-				Canvas.Left="310"
-				Canvas.Top="80" />
+			<Ellipse x:Name="Yellow"
+			         Tapped="Yellow_click"
+			         Width="200"
+			         Height="200"
+			         Fill="Yellow"
+			         Canvas.Left="100"
+			         Canvas.Top="315" />
 
-			<Ellipse x:Name="yellow"
-				Width="200"
-				Height="200"
-				Fill="Yellow"
-				Canvas.Left="100"
-				Canvas.Top="315" />
-
-			<Ellipse x:Name="blue"
-				Width="200"
-				Height="200"
-				Fill="Blue"
-				Canvas.Left="310"
-				Canvas.Top="315" />
-
-
+			<Ellipse x:Name="Blue"
+			         Width="200"
+			         Tapped="Blue_click"
+			         Height="200"
+			         Fill="Blue"
+			         Canvas.Left="310"
+			         Canvas.Top="315" />
 
 
 			<!-- Draws an oval with a blue interior and a black outline. -->

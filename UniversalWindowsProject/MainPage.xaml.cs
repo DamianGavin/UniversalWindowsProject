@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.Media.Playback;
 using Windows.Media.Core;
+using Simon.Model;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -21,34 +22,48 @@ namespace UniversalWindowsProject
 {
     public sealed partial class MainPage : Page
     {
-	    MediaPlayer player;
-	    bool playing;
+	    private readonly Quadrant _redQuadrant;
+	    private readonly Quadrant _greenQuadrant;
+	    private readonly Quadrant _blueQuadrant;
+	    private readonly Quadrant _yellowQuadrant;
+		
+
         public MainPage()
         {
             this.InitializeComponent();
-			player = new MediaPlayer();
-	        playing = false;
+	        _redQuadrant = new Quadrant(Red, "1.mp3");
+	        _greenQuadrant = new Quadrant(Green, "3.mp3");
+	        _blueQuadrant = new Quadrant(Blue, "5.mp3");
+	        _yellowQuadrant = new Quadrant(Yellow, "7.mp3");
+	        
         }
 
-	    private async void Button_click(object sender, RoutedEventArgs e)
+	    private void ClickedQuadrant(Quadrant q)
 	    {
-		    Windows.Storage.StorageFolder folder =
-			    await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(@"Assets");
-		    var file = await folder.GetFileAsync("3.mp3");
-
-		    player.AutoPlay = false;
-		    player.Source = MediaSource.CreateFromStorageFile(file);
-
-		    if (playing)
-		    {
-			    player.Source = null;
-			    playing = false;
-		    }
-		    else
-		    {
-			    player.Play();
-			    playing = true;
-		    }
+			q.MakeNoise();
+			q.Brighten();
 	    }
+
+	    private void Red_click(object sender, RoutedEventArgs e)
+	    {
+			ClickedQuadrant(_redQuadrant);
+		}
+
+	    private void Green_click(object sender, TappedRoutedEventArgs e)
+	    {
+			ClickedQuadrant(_greenQuadrant);
+
+		}
+
+	    private void Yellow_click(object sender, TappedRoutedEventArgs e)
+	    {
+		    ClickedQuadrant(_yellowQuadrant);
+			
+	    }
+
+	    private void Blue_click(object sender, TappedRoutedEventArgs e)
+	    {
+			ClickedQuadrant(_blueQuadrant);
+		}
     }
 }
