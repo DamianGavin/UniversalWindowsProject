@@ -11,6 +11,8 @@ namespace Simon.Model
         private List<Quadrant> history;
         private List<Quadrant> quadrants;
 	    private readonly Random _rnd;
+
+	    private readonly Quadrant buzzer = new Quadrant(null, "Buzz.mp3");
 		// create getter and sett and also assign a default value
 	    public bool SimonsTurn { get; set; } = true;
 	    private int HighScore { get; set; }
@@ -68,34 +70,16 @@ namespace Simon.Model
 
 	    }
 
-		
-	    public bool DoesMatch(List<int> choices)
+	    public bool OnTrack(int userChoice, int userClickNo)
 	    {
-		    if (choices.Count == 0 || choices.Count != history.Count)
+		    if (userClickNo >= history.Count)
 		    {
 			    return false;
 		    }
-			// look at everything in the history
-			// and see if the choices line up.
 
-			// user inut: [3,4]
-			// history : [RED,BLUE]
-
-			
-		    int choiceIndex = 0;
-		    foreach (var quad in history)
-		    {
-
-			
-			    if (GetAt(choices[choiceIndex]) != quad)
-			    {
-				    return false;
-			    }
-
-			    choiceIndex++;
-		    }
-		    return true;
-        }
+		    var historyQuad = history[userClickNo];
+		    return GetAt(userChoice) == historyQuad;
+	    }
 
         public void Reset()
         {
@@ -107,6 +91,7 @@ namespace Simon.Model
 			// choose random element from quadrants
 			// simon picks random element from quadrants
 	        var index = _rnd.Next(quadrants.Count); // generate number between 0-3
+//	        index = 3;
 	        var quad = quadrants[index];
 	        return quad;
         }
@@ -120,5 +105,11 @@ namespace Simon.Model
 		    await Task.Delay(1200);
 		    quadrant.ResetColour();
 		}
+
+	    public void Buzz()
+	    {
+	    
+		    buzzer.MakeNoise();
+	    }
     }
 }

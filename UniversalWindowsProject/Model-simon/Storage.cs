@@ -17,7 +17,14 @@ namespace UniversalWindowsProject.Model_simon
 
 	    public int GetHighScore()
 	    {
-		   return (int) Windows.Storage.ApplicationData.Current.LocalSettings.Values["highScore"];
+		    var value = Windows.Storage.ApplicationData.Current.LocalSettings.Values["highScore"];
+
+			if (value == null) // there is no high score saved at all
+			{
+				return -1;
+			}
+
+		   return (int) value;
 		}
     }
 }

@@ -19,7 +19,8 @@ namespace Simon.Model
 		public Quadrant(Ellipse shape, string soundName)
 		{
 			_shape = shape;
-			oldBrush = shape.Fill;
+			// when a quadrant is made with shape as null, it's just needed for the sound, not the Ellipse
+			oldBrush = shape?.Fill;
 			_soundName = soundName;
 			player = new MediaPlayer();
 		}
@@ -64,13 +65,17 @@ namespace Simon.Model
 					break;
 			}
 
+			// put a border on ellipse
+
 			Color c2 = Color.FromArgb(c1.A,
-				(byte) (c1.R * 0.6), (byte) (c1.G * 0.6), (byte) (c1.B * 0.6));
+				(byte) (c1.R *1.6), (byte) (c1.G * 1.6), (byte) (c1.B * 1.6));
 			_shape.Fill = new SolidColorBrush(c2);
 		}
 
 		public void ResetColour()
 		{
+
+			// remove border
 			_shape.Fill = oldBrush;
 		}
 	}

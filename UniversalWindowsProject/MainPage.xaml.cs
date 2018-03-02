@@ -23,100 +23,114 @@ using UniversalWindowsProject.Model_simon;
 
 namespace UniversalWindowsProject
 {
-    public sealed partial class MainPage : Page
-    {
-	    private readonly Quadrant _redQuadrant;
-	    private readonly Quadrant _greenQuadrant;
-	    private readonly Quadrant _blueQuadrant;
-	    private readonly Quadrant _yellowQuadrant;
-	    private readonly Simon.Model.Simon _simon;
-	    private List<int> userSelected;
+	public sealed partial class MainPage : Page
+	{
+		private readonly Simon.Model.Simon _simon;
+		private int _currentClickNo = 0;
+		private readonly Storage _storage;
 
 
-	    private readonly int RED_INDEX = 0;
-	    private readonly int GREEN_INDEX = 1;
-	    private readonly int YELLOW_INDEX = 2;
-	    private readonly int BLUE_INDEX = 3;
+		private readonly int RED_INDEX = 0;
+		private readonly int GREEN_INDEX = 1;
+		private readonly int YELLOW_INDEX = 2;
+		private readonly int BLUE_INDEX = 3;
 
-        public MainPage()
-        {
-            this.InitializeComponent();
-	        userSelected = new List<int>();
-	        _redQuadrant = new Quadrant(Red, "Red.mp3");
-	        _greenQuadrant = new Quadrant(Green, "Green.mp3");
-	        _blueQuadrant = new Quadrant(Blue, "Blue.mp3");
-	        _yellowQuadrant = new Quadrant(Yellow, "Yellow.mp3");
-
-	        var quadrants = new List<Quadrant>
-	        {
-				_redQuadrant,
-				_greenQuadrant,
-		        _yellowQuadrant,
-				_blueQuadrant
-		       
-			};
-
-	        _simon = new Simon.Model.Simon(quadrants);
-
-
-        }
-
-
-	    private async void QuadrantClicked(int index)
-	    {
-		    userSelected.Add(index);
-		    _simon.Tap(index);
-
-		    if (userSelected.Count == _simon.TurnNo)
-		    {
-			    if (_simon.SimonsTurn)
-			    {
-				    return;
-			    }
-			    // check to see if the user's clicks matched the history of simon
-			    bool userGotItRight = _simon.DoesMatch(userSelected);
-			    if (userGotItRight)
-			    {
-				    TextBlock.Text = "Correct";
-			    }
-			    else
-			    {
-				    TextBlock.Text = "Wrong!";
-				    _simon.Reset();
-			    }
-
-			    await Task.Delay(5000);
-				userSelected.Clear();
-				_simon.Start();
-			}
+		public MainPage()
+		{
+			this.InitializeComponent();
+			_storage = new Storage();
+			_simon = new Simon.Model.Simon(new List<Quadrant>
+			{
+				new Quadrant(Red, "Red.mp3"),
+				new Quadrant(Green, "Green.mp3"),
+				new Quadrant(Yellow, "Yellow.mp3"),
+				new Quadrant(Blue, "Blue.mp3")
+				
+			});
 		}
 
-	    private void Red_click(object sender, RoutedEventArgs e)
-	    {
-		    QuadrantClicked(RED_INDEX);
-	    }
 
-	    private void Green_click(object sender, TappedRoutedEventArgs e)
-	    {
+		private async void QuadrantClicked(int index)
+		{
+
+			if (_simon.SimonsTurn)
+			{
+				return;
+			}
+
+			
+
+			bool onTrack = _simon.OnTrack(index, _currentClickNo);
+			if (!onTrack)
+			{
+				
+				_simon.Reset();
+				_currentClickNo = 0;
+				_simon.Buzz();
+				BigX.Visibility = Visibility.Visible;
+				await Task.Delay(1800);
+				StartButton.Visibility = Visibility.Visible;
+				BigX.Visibility = Visibility.Collapsed;
+
+				return;
+			}
+			
+
+			_simon.Tap(index);
+
+			
+			_currentClickNo++;
+			if (_currentClickNo > _storage.GetHighScore())
+			{
+				_storage.SaveHighScore(_currentClickNo);
+			}
+
+			bool endOfRound = _currentClickNo == _simon.TurnNo;
+
+			if (endOfRound)
+			{
+				_currentClickNo = 0;
+				_simon.SimonsTurn = true;
+				await Task.Delay(1300);
+				_simon.Start();
+			}
+			// check if the moves so far are correct.
+
+		}
+
+		private void Red_click(object sender, RoutedEventArgs e)
+		{
+			QuadrantClicked(RED_INDEX);
+		}
+
+		private void Green_click(object sender, TappedRoutedEventArgs e)
+		{
 			QuadrantClicked(GREEN_INDEX);
 		}
 
-	    private void Yellow_click(object sender, TappedRoutedEventArgs e)
-	    {
+		private void Yellow_click(object sender, TappedRoutedEventArgs e)
+		{
 			QuadrantClicked(YELLOW_INDEX);
 		}
 
 		private void Blue_click(object sender, TappedRoutedEventArgs e)
-	    {
-		    QuadrantClicked(BLUE_INDEX);
+		{
+			QuadrantClicked(BLUE_INDEX);
 		}
 
-	    private void StartButton_OnClick(object sender, RoutedEventArgs e)
-	    {
-		    _simon.Start();
-	    }
+		private void StartButton_OnClick(object sender, RoutedEventArgs e)
+		{
+			_simon.Start();
+			StartButton.Visibility = Visibility.Collapsed;
+		}
 
-	
-
-    }
+		private void StatsButton_OnClick(object sender, RoutedEventArgs e)
+		{
+			if(_simon.SimonsTurn)
+			{
+				return;
+			}
+			Frame.Navigate(typeof(StatsPage));
+		}
+	}
 }

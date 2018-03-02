@@ -102,6 +102,9 @@
     <Compile Include="Model-simon\Simon.cs" />
     <Compile Include="Model-simon\Storage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StatsPage.xaml.cs">
+      <DependentUpon>StatsPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -111,18 +114,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Blue.mp3" />
+    <Content Include="Assets\Buzz.mp3" />
     <Content Include="Assets\Green.mp3" />
     <Content Include="Assets\hello_mp3.mp3" />
-    <Content Include="Assets\h_t_c.mp3" />
     <Content Include="Assets\pure_tone.mp3" />
     <Content Include="Assets\Red.mp3" />
-    <Content Include="Assets\Voice 002_sd.mp3" />
-    <Content Include="Assets\Voice 004_sd.mp3" />
-    <Content Include="Assets\Voice 006_sd.mp3" />
-    <Content Include="Assets\Voice 007_sd.mp3" />
-    <Content Include="Assets\Voice 009_sd.mp3" />
-    <Content Include="Assets\Voice 010_sd.mp3" />
-    <Content Include="Assets\Voice 011_sd.mp3" />
     <Content Include="Assets\Yellow.mp3" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
@@ -141,6 +137,10 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="StatsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
