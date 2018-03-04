@@ -4,10 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UniversalWindowsProject.Model_simon
+namespace UniversalWindowsProject
 {
     class Storage
     {
+
+	    public async void Clear()
+	    {
+			// wipe local storage
+		    await Windows.Storage.ApplicationData.Current.ClearAsync();
+	    }
 
 	    public void SaveHighScore(int score)
 	    {

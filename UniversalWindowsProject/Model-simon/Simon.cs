@@ -14,7 +14,7 @@ namespace Simon.Model
 
 	    private readonly Quadrant buzzer = new Quadrant(null, "Buzz.mp3");
 		// create getter and sett and also assign a default value
-	    public bool SimonsTurn { get; set; } = true;
+	    public bool SimonsTurn { get; set; } = false;
 	    private int HighScore { get; set; }
 
 

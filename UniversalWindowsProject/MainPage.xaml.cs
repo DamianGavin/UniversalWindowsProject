@@ -15,8 +15,10 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.Media.Playback;
 using Windows.Media.Core;
+using Windows.Storage;
+using Windows.UI.Core;
 using Simon.Model;
-using UniversalWindowsProject.Model_simon;
+using UniversalWindowsProject;
 
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -27,7 +29,9 @@ namespace UniversalWindowsProject
 	{
 		private readonly Simon.Model.Simon _simon;
 		private int _currentClickNo = 0;
+		private int _currentScore = 0;
 		private readonly Storage _storage;
+		private int _totalClicks = 0;
 
 
 		private readonly int RED_INDEX = 0;
@@ -48,6 +52,28 @@ namespace UniversalWindowsProject
 				
 			});
 		}
+		protected override void OnNavigatedTo(NavigationEventArgs e)
+		{
+			//read settings here
+			ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+			
+
+			Frame rootFrame = Window.Current.Content as Frame;
+			if (rootFrame.CanGoBack)
+			{
+				SystemNavigationManager.GetForCurrentView().
+						AppViewBackButtonVisibility =
+					AppViewBackButtonVisibility.Visible;
+
+			}
+			else
+			{
+				SystemNavigationManager.GetForCurrentView().
+						AppViewBackButtonVisibility =
+					AppViewBackButtonVisibility.Collapsed;
+			}
+			base.OnNavigatedTo(e);
+		}
 
 
 		private async void QuadrantClicked(int index)
@@ -67,11 +93,14 @@ namespace UniversalWindowsProject
 				_simon.Reset();
 				_currentClickNo = 0;
 				_simon.Buzz();
+				_currentScore = 0;
+				CurrentScore.Text = "0";
+				_totalClicks = 0;
 				BigX.Visibility = Visibility.Visible;
 				await Task.Delay(1800);
 				StartButton.Visibility = Visibility.Visible;
 				BigX.Visibility = Visibility.Collapsed;
-
+				
 				return;
 			}
 			
@@ -80,9 +109,13 @@ namespace UniversalWindowsProject
 
 			
 			_currentClickNo++;
-			if (_currentClickNo > _storage.GetHighScore())
+			_totalClicks++;
+
+			_currentScore = _totalClicks * 10;
+			CurrentScore.Text = "Current score: " + _currentScore.ToString();
+			if (_currentScore > _storage.GetHighScore())
 			{
-				_storage.SaveHighScore(_currentClickNo);
+				_storage.SaveHighScore(_currentScore);
 			}
 
 			bool endOfRound = _currentClickNo == _simon.TurnNo;
@@ -131,6 +164,10 @@ namespace UniversalWindowsProject
 				return;
 			}
 			Frame.Navigate(typeof(StatsPage));
+		}
+		private void BtnSettings_OnClick(object sender, RoutedEventArgs e)
+		{
+			this.Frame.Navigate(typeof(StatsPage));
 		}
 	}
 }

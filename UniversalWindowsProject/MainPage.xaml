@@ -7,14 +7,22 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d">
 
-	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	<Grid >
+		<Grid.Background>
+			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+				<GradientStop Color="White" Offset="0" />
+				<GradientStop Color="Black" Offset="1" />
+			</LinearGradientBrush>
+		</Grid.Background>
 		<StackPanel>
-			<TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" Text="sXamlon" FontSize="50" />
+			<TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" Text="sXamlon" FontSize="40" />
+			<TextBlock x:Name="CurrentScore" Padding="20" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="30">0</TextBlock>
 			<Button Content="Start Game" x:Name="StartButton" Click="StartButton_OnClick" />
 			<Button Content="Stats" x:Name="StatsButton" Click="StatsButton_OnClick"></Button>
 
 
-			<Grid Background="Gray">
+			<Grid >
+				
 				<Grid.RowDefinitions>
 					<RowDefinition />
 					<RowDefinition />
@@ -117,104 +125,12 @@
 				           Foreground="Red"
 				           TextAlignment="Center"
 				           Grid.ColumnSpan="4" Grid.RowSpan="2">
-					X
 				</TextBlock>
-
-
-				<!-- Draws an oval with a blue interior and a black outline. -->
-
 
 			</Grid>
 		</StackPanel>
 
-		<!--		<Canvas Height="600" Width="600" Background="Gray">-->
-		<!---->
-		<!--			~1~ Draws an oval with a blue interior. @1@-->
-		<!--			<Ellipse x:Name="Red"-->
-		<!--						Tag="R"-->
-		<!--			         Tapped="Red_click"-->
-		<!--			         Width="200"-->
-		<!--			         Height="200"-->
-		<!--			         Canvas.Left="100"-->
-		<!--			         Canvas.Top="80" >-->
-		<!---->
-		<!--				<Ellipse.Fill>-->
-		<!---->
-		<!--					<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">-->
-		<!--			-->
-		<!--						<GradientStop Color="Red" Offset="0.25" />-->
-		<!--					-->
-		<!--						<GradientStop Color="Black" Offset="1.0" />-->
-		<!--					</LinearGradientBrush>-->
-		<!--				</Ellipse.Fill>-->
-		<!---->
-		<!--			</Ellipse>-->
-		<!---->
-		<!--			<Ellipse x:Name="Green"-->
-		<!--			         Tag="G"-->
-		<!--			         Tapped="Green_click"-->
-		<!--			         Width="200"-->
-		<!--			         Height="200"-->
-		<!--			         Canvas.Left="310"-->
-		<!--			         Canvas.Top="80" >-->
-		<!---->
-		<!--			<Ellipse.Fill>-->
-		<!---->
-		<!--				<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">-->
-		<!---->
-		<!--					<GradientStop Color="Green" Offset="0.25" />-->
-		<!---->
-		<!--					<GradientStop Color="Black" Offset="1.0" />-->
-		<!--				</LinearGradientBrush>-->
-		<!--			</Ellipse.Fill>-->
-		<!---->
-		<!--			</Ellipse>-->
-		<!---->
-		<!--			<Ellipse x:Name="Yellow"-->
-		<!--			         Tag="Y"-->
-		<!--			         Tapped="Yellow_click"-->
-		<!--			         Width="200"-->
-		<!--			         Height="200"-->
-		<!--			         Canvas.Left="100"-->
-		<!--			         Canvas.Top="315" >-->
-		<!---->
-		<!--				<Ellipse.Fill>-->
-		<!---->
-		<!--					<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">-->
-		<!---->
-		<!--						<GradientStop Color="Yellow" Offset="0.25" />-->
-		<!---->
-		<!--						<GradientStop Color="Black" Offset="1.0" />-->
-		<!--					</LinearGradientBrush>-->
-		<!--				</Ellipse.Fill>-->
-		<!---->
-		<!--			</Ellipse>-->
-		<!---->
-		<!--			<Ellipse x:Name="Blue"-->
-		<!--			         Tag="B"-->
-		<!--			         Width="200"-->
-		<!--			         Tapped="Blue_click"-->
-		<!--			         Height="200"-->
-		<!--			         Canvas.Left="310"-->
-		<!--			         Canvas.Top="315" >-->
-		<!---->
-		<!--				<Ellipse.Fill>-->
-		<!---->
-		<!--					<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">-->
-		<!---->
-		<!--						<GradientStop Color="Blue" Offset="0.25" />-->
-		<!---->
-		<!--						<GradientStop Color="Black" Offset="1.0" />-->
-		<!--					</LinearGradientBrush>-->
-		<!--				</Ellipse.Fill>-->
-		<!---->
-		<!--			</Ellipse>-->
-		<!---->
-		<!---->
-		<!--			~1~ Draws an oval with a blue interior and a black outline. @1@-->
-		<!---->
-		<!---->
-		<!--		</Canvas>-->
+		
 
 	</Grid>
 </Page>

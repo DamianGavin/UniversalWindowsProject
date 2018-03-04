@@ -26,5 +26,17 @@ namespace UniversalWindowsProject
 		{
 			this.InitializeComponent();
 		}
+
+		protected override void OnNavigatedTo(NavigationEventArgs e)
+		{
+			base.OnNavigatedTo(e);
+			HighScore.Text = new Storage().GetHighScore().ToString();
+		}
+
+		private void NavigateToMainPage(object sender, RoutedEventArgs e)
+		{
+			// navigate to the main app page.
+			Frame.Navigate(typeof(MainPage));
+		}
 	}
 }
