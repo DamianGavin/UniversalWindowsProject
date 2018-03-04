@@ -8,8 +8,8 @@ namespace Simon.Model
 {
     class Simon
     {
-        private List<Quadrant> history;
-        private List<Quadrant> quadrants;
+        private readonly List<Quadrant> _history;
+        private readonly List<Quadrant> _quadrants;
 	    private readonly Random _rnd;
 
 	    private readonly Quadrant buzzer = new Quadrant(null, "Buzz.mp3");
@@ -18,20 +18,20 @@ namespace Simon.Model
 	    private int HighScore { get; set; }
 
 
-	    public int TurnNo => history.Count;
+	    public int TurnNo =>_history.Count;
 
 
         private Quadrant GetAt(int i)
         {
-            return quadrants[i];
+            return _quadrants[i];
         }
 
         public Simon(List<Quadrant> quadrants)
         {
 	        _rnd = new Random();
-            this.history = new List<Quadrant>();
+            this._history = new List<Quadrant>();
 	
-            this.quadrants = quadrants;
+            this._quadrants = quadrants;
 
 		}
 
@@ -53,14 +53,14 @@ namespace Simon.Model
 
 		    SimonsTurn = true;
 		    // adds it to history.
-		    history.Add(NextQuadrant());
+		    _history.Add(NextQuadrant());
 		    // plays entire history
-		    foreach (var quadrant in history)
+		    foreach (var quadrant in _history)
 		    {
 			    quadrant.MakeNoise();
 			    quadrant.Brighten();
 			    // wait some amount time
-				await Task.Delay(1200);
+				await Task.Delay(800);
 			    quadrant.ResetColour();
 				
 			}
@@ -72,27 +72,26 @@ namespace Simon.Model
 
 	    public bool OnTrack(int userChoice, int userClickNo)
 	    {
-		    if (userClickNo >= history.Count)
+		    if (userClickNo >= _history.Count)
 		    {
 			    return false;
 		    }
 
-		    var historyQuad = history[userClickNo];
+		    var historyQuad = _history[userClickNo];
 		    return GetAt(userChoice) == historyQuad;
 	    }
 
         public void Reset()
         {
-            history.Clear();
+            _history.Clear();
         }
 
         private Quadrant NextQuadrant()
         {
 			// choose random element from quadrants
 			// simon picks random element from quadrants
-	        var index = _rnd.Next(quadrants.Count); // generate number between 0-3
-//	        index = 3;
-	        var quad = quadrants[index];
+	        var index = _rnd.Next(_quadrants.Count); // generate number between 0-3
+	        var quad = _quadrants[index];
 	        return quad;
         }
 
@@ -102,7 +101,7 @@ namespace Simon.Model
 			quadrant.MakeNoise();
 		    quadrant.Brighten();
 		    // wait some amount time
-		    await Task.Delay(1200);
+		    await Task.Delay(800);
 		    quadrant.ResetColour();
 		}
 

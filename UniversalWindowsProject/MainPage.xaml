@@ -15,10 +15,10 @@
 			</LinearGradientBrush>
 		</Grid.Background>
 		<StackPanel>
-			<TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" Text="sXamlon" FontSize="40" />
-			<TextBlock x:Name="CurrentScore" Padding="20" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="30">0</TextBlock>
-			<Button Content="Start Game" x:Name="StartButton" Click="StartButton_OnClick" />
-			<Button Content="Stats" x:Name="StatsButton" Click="StatsButton_OnClick"></Button>
+			<TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" FontWeight="ExtraBlack" Text="sXamlon" FontSize="50" />
+			<TextBlock x:Name="CurrentScore" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="20">0</TextBlock>
+			<Button Content="Start Game" Width="100" BorderBrush="Black" Background="Brown" x:Name="StartButton" Click="StartButton_OnClick" />
+			<Button Content="High Score" Width="100" BorderBrush="Black" Background="Orange" x:Name="StatsButton" Click="StatsButton_OnClick"></Button>
 
 
 			<Grid >
@@ -35,9 +35,11 @@
 					<ColumnDefinition Width="*" />
 				</Grid.ColumnDefinitions>
 
-
+				
 				<!-- Draws an oval with a blue interior. -->
 				<Ellipse x:Name="Red"
+				         StrokeThickness="3"
+				         Stroke="Black"
 				         Tag="R"
 				         Tapped="Red_click"
 				         Width="200"
@@ -58,6 +60,8 @@
 				</Ellipse>
 
 				<Ellipse x:Name="Green"
+				         StrokeThickness="3"
+				         Stroke="Black"
 				         Tag="G"
 				         Tapped="Green_click"
 				         Width="200"
@@ -78,6 +82,8 @@
 				</Ellipse>
 
 				<Ellipse x:Name="Yellow"
+				         StrokeThickness="3"
+				         Stroke="Black"
 				         Tag="Y"
 				         Tapped="Yellow_click"
 				         Width="200"
@@ -98,6 +104,8 @@
 				</Ellipse>
 
 				<Ellipse x:Name="Blue"
+				         StrokeThickness="3"
+				         Stroke="Black"
 				         Tag="B"
 				         Width="200"
 				         Tapped="Blue_click"
@@ -119,12 +127,15 @@
 
 
 				<TextBlock x:Name="BigX"
+
 				           Visibility="Collapsed"
 				           FontSize="300"
 				           FontWeight="ExtraBold"
 				           Foreground="Red"
 				           TextAlignment="Center"
-				           Grid.ColumnSpan="4" Grid.RowSpan="2">
+						   VerticalAlignment="Center"
+						   HorizontalAlignment="Center"
+				           Grid.ColumnSpan="4" Grid.RowSpan="2">X
 				</TextBlock>
 
 			</Grid>

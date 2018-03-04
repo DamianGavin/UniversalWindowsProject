@@ -7,6 +7,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d">
 	<Grid>
+
 		<Grid.Background>
 			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 				<GradientStop Color="Red" Offset="0" />
@@ -15,11 +16,13 @@
 		</Grid.Background>
 		<TextBlock HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Top" FontSize="100">Highest score is :</TextBlock>
 		<TextBlock x:Name="HighScore" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" FontSize="400">0</TextBlock>
+
 		<StackPanel>
+
 			<Image />
 			<TextBlock />
 			<!--			<TextBlock x:Name="NumBeeps">0</TextBlock>-->
-			<Button Content="&#xE72B;" FontFamily="Segoe MDL2 Assets" Click="NavigateToMainPage"> </Button>
+			<Button Content="&#xE72B;" FontFamily="Segoe MDL2 Assets" Click="NavigateToMainPage"></Button>
 		</StackPanel>
 	
 	</Grid>

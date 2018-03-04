@@ -45,10 +45,10 @@ namespace UniversalWindowsProject
 			_storage = new Storage();
 			_simon = new Simon.Model.Simon(new List<Quadrant>
 			{
-				new Quadrant(Red, "Red.mp3"),
-				new Quadrant(Green, "Green.mp3"),
-				new Quadrant(Yellow, "Yellow.mp3"),
-				new Quadrant(Blue, "Blue.mp3")
+				new Quadrant(Red, "r.mp3"),
+				new Quadrant(Green, "g.mp3"),
+				new Quadrant(Yellow, "y.mp3"),
+				new Quadrant(Blue, "b.mp3")
 				
 			});
 		}
@@ -58,21 +58,7 @@ namespace UniversalWindowsProject
 			ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
 			
 
-			Frame rootFrame = Window.Current.Content as Frame;
-			if (rootFrame.CanGoBack)
-			{
-				SystemNavigationManager.GetForCurrentView().
-						AppViewBackButtonVisibility =
-					AppViewBackButtonVisibility.Visible;
 
-			}
-			else
-			{
-				SystemNavigationManager.GetForCurrentView().
-						AppViewBackButtonVisibility =
-					AppViewBackButtonVisibility.Collapsed;
-			}
-			base.OnNavigatedTo(e);
 		}
 
 
@@ -124,7 +110,7 @@ namespace UniversalWindowsProject
 			{
 				_currentClickNo = 0;
 				_simon.SimonsTurn = true;
-				await Task.Delay(1300);
+				await Task.Delay(800);
 				_simon.Start();
 			}
 			// check if the moves so far are correct.
