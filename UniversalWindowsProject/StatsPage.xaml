@@ -7,11 +7,13 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d">
 	<Grid>
-
+		<!--Styling adapted from https://docs.microsoft.com/en-us/windows/uwp/design/style/brushes-->
 		<Grid.Background>
-			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-				<GradientStop Color="Red" Offset="0" />
-				<GradientStop Color="Green" Offset="1" />
+			<LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+				<GradientStop Color="Yellow" Offset="0.0" x:Name="GradientStop1"/>
+				<GradientStop Color="Red" Offset="0.25" x:Name="GradientStop2"/>
+				<GradientStop Color="Blue" Offset="0.75" x:Name="GradientStop3"/>
+				<GradientStop Color="LimeGreen" Offset="1.0" x:Name="GradientStop4"/>
 			</LinearGradientBrush>
 		</Grid.Background>
 		<TextBlock HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Top" FontSize="100">Highest score is :</TextBlock>
@@ -19,10 +21,10 @@
 
 		<StackPanel>
 
-			<Image />
-			<TextBlock />
+			<!--<Image />-->
+			<!--<TextBlock />-->
 			<!--			<TextBlock x:Name="NumBeeps">0</TextBlock>-->
-			<Button Content="&#xE72B;" FontFamily="Segoe MDL2 Assets" Click="NavigateToMainPage"></Button>
+			<Button Content="&#xE72B;" FontFamily="Segoe MDL2 Assets" Click="NavigateToMainPage" VerticalAlignment="Center"></Button>
 		</StackPanel>
 	
 	</Grid>

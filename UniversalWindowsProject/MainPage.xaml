@@ -7,19 +7,22 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d">
 
+	
+
 	<Grid >
+
 		<Grid.Background>
-			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-				<GradientStop Color="White" Offset="0" />
+			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.,0">
+				<GradientStop Color="White" Offset="0.4" />
 				<GradientStop Color="Black" Offset="1" />
 			</LinearGradientBrush>
 		</Grid.Background>
 		<StackPanel>
 			<TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" FontWeight="ExtraBlack" Text="sXamlon" FontSize="50" />
-			<TextBlock x:Name="CurrentScore" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="20">0</TextBlock>
+			<TextBlock x:Name="CurrentScore" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="20"></TextBlock>
 			<Button Content="Start Game" Width="100" BorderBrush="Black" Background="Brown" x:Name="StartButton" Click="StartButton_OnClick" />
 			<Button Content="High Score" Width="100" BorderBrush="Black" Background="Orange" x:Name="StatsButton" Click="StatsButton_OnClick"></Button>
-
+			
 
 			<Grid >
 				
@@ -34,6 +37,8 @@
 					<ColumnDefinition Width="*" />
 					<ColumnDefinition Width="*" />
 				</Grid.ColumnDefinitions>
+
+				
 
 				
 				<!-- Draws an oval with a blue interior. -->

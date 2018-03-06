@@ -141,6 +141,7 @@ namespace UniversalWindowsProject
 		{
 			_simon.Start();
 			StartButton.Visibility = Visibility.Collapsed;
+		
 		}
 
 		private void StatsButton_OnClick(object sender, RoutedEventArgs e)
