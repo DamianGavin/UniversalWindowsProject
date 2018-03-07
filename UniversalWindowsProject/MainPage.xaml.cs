@@ -156,5 +156,6 @@ namespace UniversalWindowsProject
 		{
 			this.Frame.Navigate(typeof(StatsPage));
 		}
+
 	}
 }

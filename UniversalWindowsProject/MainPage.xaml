@@ -10,6 +10,7 @@
 	
 
 	<Grid >
+		
 
 		<Grid.Background>
 			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.,0">
@@ -18,11 +19,51 @@
 			</LinearGradientBrush>
 		</Grid.Background>
 		<StackPanel>
-			<TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" FontWeight="ExtraBlack" Text="sXamlon" FontSize="50" />
+			<TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" FontWeight="ExtraBlack" Text="sXamlon" FontSize="0" />
 			<TextBlock x:Name="CurrentScore" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="20"></TextBlock>
-			<Button Content="Start Game" Width="100" BorderBrush="Black" Background="Brown" x:Name="StartButton" Click="StartButton_OnClick" />
-			<Button Content="High Score" Width="100" BorderBrush="Black" Background="Orange" x:Name="StatsButton" Click="StatsButton_OnClick"></Button>
-			
+			<!--<Button Content="Start Game" Width="100" BorderBrush="Black" Background="Brown" x:Name="StartButton" Click="StartButton_OnClick" />-->
+			<!--<Button Content="High Score" Width="100" BorderBrush="Black" Background="Orange" x:Name="StatsButton" Click="StatsButton_OnClick"></Button>-->
+			<Button x:Name="StartButton" Background="#FF42A214" Foreground="White"
+			        FontFamily="Segoe Print" FontSize="22"
+			        Click="StartButton_OnClick" Width="200"
+			        BorderBrush="MediumAquamarine" HorizontalAlignment="Left" VerticalAlignment="Top">
+
+				<Button.Resources>
+					<SolidColorBrush x:Key="ButtonBackgroundPointerOver">#FF42A214</SolidColorBrush>
+					<SolidColorBrush x:Key="ButtonBackgroundPressed">#FF359308</SolidColorBrush>
+					<SolidColorBrush x:Key="ButtonForegroundPointerOver">white</SolidColorBrush>
+					<SolidColorBrush x:Key="ButtonForegroundPressed">white</SolidColorBrush>
+					<SolidColorBrush x:Key="ButtonBorderBrushPointerOver">#FF267600</SolidColorBrush>
+					<SolidColorBrush x:Key="ButtonBorderBrushPressed">#FF267600</SolidColorBrush>
+				</Button.Resources>
+
+				<StackPanel Orientation="Horizontal">
+					<SymbolIcon Symbol="Audio" Margin="0,0,10,0" />
+					<TextBlock Text="Start Game" />
+				</StackPanel>
+
+			</Button>
+
+			<Button Background="#FF42A214" Foreground="White"
+			        FontFamily="Segoe Print" FontSize="22"
+			        Click="StatsButton_OnClick" Width="200"
+			        BorderBrush="Aqua" HorizontalAlignment="Left" VerticalAlignment="Top">
+
+				<Button.Resources>
+					<SolidColorBrush x:Key="ButtonBackgroundPointerOver">#FF42A214</SolidColorBrush>
+					<SolidColorBrush x:Key="ButtonBackgroundPressed">#FF359308</SolidColorBrush>
+					<SolidColorBrush x:Key="ButtonForegroundPointerOver">white</SolidColorBrush>
+					<SolidColorBrush x:Key="ButtonForegroundPressed">white</SolidColorBrush>
+					<SolidColorBrush x:Key="ButtonBorderBrushPointerOver">#FF267600</SolidColorBrush>
+					<SolidColorBrush x:Key="ButtonBorderBrushPressed">#FF267600</SolidColorBrush>
+				</Button.Resources>
+
+				<StackPanel Orientation="Horizontal">
+					<SymbolIcon Symbol="Emoji2" Margin="0,0,10,0" />
+					<TextBlock Text="World Record" />
+				</StackPanel>
+
+			</Button>
 
 			<Grid >
 				
@@ -146,7 +187,6 @@
 			</Grid>
 		</StackPanel>
 
-		
-
 	</Grid>
+
 </Page>
