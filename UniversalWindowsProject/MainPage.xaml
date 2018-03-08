@@ -63,6 +63,7 @@
 			</Button>
 
 			<Button Background="#FF42A214" Foreground="White"
+					x:Name="HighScoreButton"
 			        FontFamily="Segoe Print" FontSize="22"
 			        Click="StatsButton_OnClick" Width="200"
 			        Grid.Row="1"

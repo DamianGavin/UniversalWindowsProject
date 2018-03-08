@@ -63,6 +63,7 @@ namespace UniversalWindowsProject
 				BigX.Visibility = Visibility.Visible;
 				await Task.Delay(1800);
 				StartButton.Visibility = Visibility.Visible;
+				HighScoreButton.Visibility = Visibility.Visible;
 				BigX.Visibility = Visibility.Collapsed;
 
 				return;
@@ -85,7 +86,7 @@ namespace UniversalWindowsProject
 			{
 				_currentClickNo = 0;
 				_simon.SimonsTurn = true;
-				await Task.Delay(800);
+				await Task.Delay(2000);
 				_simon.Start();
 			}
 
@@ -116,6 +117,7 @@ namespace UniversalWindowsProject
 		{
 			_simon.Start();
 			StartButton.Visibility = Visibility.Collapsed;
+			HighScoreButton.Visibility = Visibility.Collapsed;
 		}
 
 		private void StatsButton_OnClick(object sender, RoutedEventArgs e)

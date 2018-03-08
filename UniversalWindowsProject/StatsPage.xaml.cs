@@ -30,7 +30,19 @@ namespace UniversalWindowsProject
 
 		private void ResetButton_OnClick(object sender, RoutedEventArgs e)
 		{
-			return;
+			ButtonPanel.Visibility = Visibility.Visible;
+		}
+
+		private void YesButton_OnClick(object sender, RoutedEventArgs e)
+		{
+			new Storage().SaveHighScore(0);
+			HighScore.Text = "0";
+			ButtonPanel.Visibility = Visibility.Collapsed;
+		}
+
+		private void NoButton_OnClick(object sender, RoutedEventArgs e)
+		{
+			ButtonPanel.Visibility = Visibility.Collapsed;
 		}
 	}
 }

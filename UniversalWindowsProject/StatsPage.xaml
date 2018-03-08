@@ -21,8 +21,8 @@
 		           FontSize="400">
 			
 		</TextBlock>
-
-		<Button x:Name="ResetButton" Background="#FF42A214" Foreground="White"
+		
+			<Button x:Name="ResetButton" Background="#FF42A214" Foreground="White"
 		        FontFamily="Segoe Print" FontSize="22"
 		        Click="ResetButton_OnClick" Width="250"
 
@@ -44,7 +44,15 @@
 			</StackPanel>
 
 		</Button>
+		
+		<StackPanel x:Name="ButtonPanel" Visibility="Collapsed">
+			<Button x:Name="YesButton" Click="YesButton_OnClick">Yes!</Button>
+			<Button x:Name="NoButton" Click="NoButton_OnClick">No!</Button>
+		</StackPanel>
+		
+		
 
+		
 		<StackPanel>
 
 			<!--<Image />-->
