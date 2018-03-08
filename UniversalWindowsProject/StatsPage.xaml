@@ -10,22 +10,49 @@
 		<!--Styling adapted from https://docs.microsoft.com/en-us/windows/uwp/design/style/brushes-->
 		<Grid.Background>
 			<LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-				<GradientStop Color="Yellow" Offset="0.0" x:Name="GradientStop1"/>
-				<GradientStop Color="Red" Offset="0.25" x:Name="GradientStop2"/>
-				<GradientStop Color="Blue" Offset="0.75" x:Name="GradientStop3"/>
-				<GradientStop Color="LimeGreen" Offset="1.0" x:Name="GradientStop4"/>
+				<GradientStop Color="Yellow" Offset="0.0" x:Name="GradientStop1" />
+				<GradientStop Color="Red" Offset="0.25" x:Name="GradientStop2" />
+				<GradientStop Color="Blue" Offset="0.75" x:Name="GradientStop3" />
+				<GradientStop Color="LimeGreen" Offset="1.0" x:Name="GradientStop4" />
 			</LinearGradientBrush>
 		</Grid.Background>
 		<TextBlock HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Top" FontSize="100">Highest score is :</TextBlock>
-		<TextBlock x:Name="HighScore" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" FontSize="400">0</TextBlock>
+		<TextBlock x:Name="HighScore" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center"
+		           FontSize="400">
+			
+		</TextBlock>
+
+		<Button x:Name="ResetButton" Background="#FF42A214" Foreground="White"
+		        FontFamily="Segoe Print" FontSize="22"
+		        Click="ResetButton_OnClick" Width="250"
+
+		        Margin="20,20,20,20"
+		        BorderBrush="MediumAquamarine" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+
+			<Button.Resources>
+				<SolidColorBrush x:Key="ButtonBackgroundPointerOver">#FF42A214</SolidColorBrush>
+				<SolidColorBrush x:Key="ButtonBackgroundPressed">#FF359308</SolidColorBrush>
+				<SolidColorBrush x:Key="ButtonForegroundPointerOver">white</SolidColorBrush>
+				<SolidColorBrush x:Key="ButtonForegroundPressed">white</SolidColorBrush>
+				<SolidColorBrush x:Key="ButtonBorderBrushPointerOver">#FF267600</SolidColorBrush>
+				<SolidColorBrush x:Key="ButtonBorderBrushPressed">#FF267600</SolidColorBrush>
+			</Button.Resources>
+
+			<StackPanel Orientation="Horizontal">
+				<SymbolIcon Symbol="Delete" Margin="0,0,10,0" />
+				<TextBlock Text="Reset High Score?" />
+			</StackPanel>
+
+		</Button>
 
 		<StackPanel>
 
 			<!--<Image />-->
 			<!--<TextBlock />-->
 			<!--			<TextBlock x:Name="NumBeeps">0</TextBlock>-->
-			<Button Content="&#xE72B;" FontFamily="Segoe MDL2 Assets" Click="NavigateToMainPage" VerticalAlignment="Center"></Button>
+			<Button Content="&#xE72B;" FontFamily="Segoe MDL2 Assets" Click="NavigateToMainPage" VerticalAlignment="Center" />
 		</StackPanel>
-	
+
 	</Grid>
 </Page>
+

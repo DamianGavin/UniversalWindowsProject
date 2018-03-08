@@ -1,20 +1,20 @@
 ﻿using System;
+using Windows.ApplicationModel;
 using Windows.Media.Core;
 using Windows.Media.Playback;
 using Windows.UI;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
 
 namespace Simon.Model
 {
-	class Quadrant
+	internal class Quadrant
 	{
-		private Ellipse _shape;
-		private MediaPlayer player;
+		private readonly Ellipse _shape;
+		private readonly MediaPlayer player;
 		private bool playing;
-		private string _soundName;
-		private Brush oldBrush;
+		private readonly string _soundName;
+		private readonly Brush oldBrush;
 
 		public Quadrant(Ellipse shape, string soundName)
 		{
@@ -28,7 +28,7 @@ namespace Simon.Model
 
 		public async void MakeNoise()
 		{
-			var folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(@"Assets");
+			var folder = await Package.Current.InstalledLocation.GetFolderAsync(@"Assets");
 			var file = await folder.GetFileAsync(_soundName);
 
 			player.AutoPlay = false;
@@ -67,14 +67,13 @@ namespace Simon.Model
 
 			// put a border on ellipse
 
-			Color c2 = Color.FromArgb(c1.A,
-				(byte) (c1.R *1.6), (byte) (c1.G * 1.6), (byte) (c1.B * 1.6));
+			var c2 = Color.FromArgb(c1.A,
+				(byte) (c1.R * 1.6), (byte) (c1.G * 1.6), (byte) (c1.B * 1.6));
 			_shape.Fill = new SolidColorBrush(c2);
 		}
 
 		public void ResetColour()
 		{
-
 			// remove border
 			_shape.Fill = oldBrush;
 		}
