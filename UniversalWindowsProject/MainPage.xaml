@@ -38,7 +38,7 @@
 
 
 			<TextBlock Grid.Column="2" Grid.Row="2" x:Name="CurrentScore" VerticalAlignment="Top" HorizontalAlignment="Right"
-			           FontFamily="Segoe Print" FontSize="22" Margin="0,0,20,0" />
+			           FontFamily="Segoe Print" Foreground="Azure" FontSize="22" Margin="0,0,20,0" />
 			<Button x:Name="StartButton" Background="#FF42A214" Foreground="White"
 			        FontFamily="Segoe Print" FontSize="22"
 			        Click="StartButton_OnClick" Width="200"

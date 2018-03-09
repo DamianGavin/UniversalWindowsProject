@@ -113,17 +113,11 @@
     <None Include="UniversalWindowsProject_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\b.mp3" />
-    <Content Include="Assets\Blue.mp3" />
-    <Content Include="Assets\Buzz.mp3" />
-    <Content Include="Assets\g.mp3" />
-    <Content Include="Assets\Green.mp3" />
-    <Content Include="Assets\hello_mp3.mp3" />
-    <Content Include="Assets\pure_tone.mp3" />
-    <Content Include="Assets\r.mp3" />
-    <Content Include="Assets\Red.mp3" />
-    <Content Include="Assets\y.mp3" />
-    <Content Include="Assets\Yellow.mp3" />
+    <Content Include="Sounds\b.mp3" />
+    <Content Include="Sounds\Buzz.mp3" />
+    <Content Include="Sounds\g.mp3" />
+    <Content Include="Sounds\r.mp3" />
+    <Content Include="Sounds\y.mp3" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

@@ -28,7 +28,7 @@ namespace Simon.Model
 
 		public async void MakeNoise()
 		{
-			var folder = await Package.Current.InstalledLocation.GetFolderAsync(@"Assets");
+			var folder = await Package.Current.InstalledLocation.GetFolderAsync(@"Sounds");
 			var file = await folder.GetFileAsync(_soundName);
 
 			player.AutoPlay = false;

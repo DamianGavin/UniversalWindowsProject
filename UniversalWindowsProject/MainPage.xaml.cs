@@ -86,7 +86,7 @@ namespace UniversalWindowsProject
 			{
 				_currentClickNo = 0;
 				_simon.SimonsTurn = true;
-				await Task.Delay(2000);
+				await Task.Delay(1400);
 				_simon.Start();
 			}
 

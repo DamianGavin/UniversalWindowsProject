@@ -45,22 +45,28 @@
 
 		</Button>
 		
-		<StackPanel x:Name="ButtonPanel" Visibility="Collapsed">
-			<Button x:Name="YesButton" Click="YesButton_OnClick">Yes!</Button>
-			<Button x:Name="NoButton" Click="NoButton_OnClick">No!</Button>
+		<StackPanel Orientation="Horizontal" x:Name="ButtonPanel" Visibility="Collapsed">
+			<Button x:Name="YesButton" Background="#FF42A214" Foreground="White" 
+			        FontFamily="Segoe Print" FontSize="22"
+			        Click="YesButton_OnClick" Margin="275,0,0,20" 
+			        VerticalAlignment="Bottom">Yes!</Button>
+
+			<Button x:Name="NoButton" Background="#FF42A214" Foreground="White"
+			        FontFamily="Segoe Print" FontSize="22"
+			        Click="NoButton_OnClick" Margin="5,0,0,20" 
+			        VerticalAlignment="Bottom">No!</Button>
+
 		</StackPanel>
-		
-		
 
-		
+
+
+
 		<StackPanel>
-
-			<!--<Image />-->
-			<!--<TextBlock />-->
-			<!--			<TextBlock x:Name="NumBeeps">0</TextBlock>-->
 			<Button Content="&#xE72B;" FontFamily="Segoe MDL2 Assets" Click="NavigateToMainPage" VerticalAlignment="Center" />
 		</StackPanel>
 
 	</Grid>
 </Page>
+
+
 
