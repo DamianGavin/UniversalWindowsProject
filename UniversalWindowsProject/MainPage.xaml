@@ -10,7 +10,7 @@
 
 	<Grid>
 
-
+		<!--https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.media.lineargradientbrush-->
 		<Grid.Background>
 			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.,0">
 				<GradientStop Color="White" Offset="0.4" />
@@ -37,7 +37,7 @@
 			<TextBlock Grid.Column="1" HorizontalAlignment="Left" FontWeight="ExtraBlack" Text="lon" FontSize="49" />
 
 
-			<TextBlock Grid.Column="2" Grid.Row="2" x:Name="CurrentScore" VerticalAlignment="Top" HorizontalAlignment="Right"
+			<TextBlock Grid.Column="1" Grid.Row="2" x:Name="CurrentScore" VerticalAlignment="Top" HorizontalAlignment="Right"
 			           FontFamily="Segoe Print" Foreground="Azure" FontSize="22" Margin="0,0,20,0" />
 			<Button x:Name="StartButton" Background="#FF42A214" Foreground="White"
 			        FontFamily="Segoe Print" FontSize="22"
@@ -63,10 +63,11 @@
 			</Button>
 
 			<Button Background="#FF42A214" Foreground="White"
-					x:Name="HighScoreButton"
+			        x:Name="HighScoreButton"
 			        FontFamily="Segoe Print" FontSize="22"
 			        Click="StatsButton_OnClick" Width="200"
 			        Grid.Row="1"
+					Grid.Column="0"
 			        BorderBrush="Aqua" HorizontalAlignment="Left" VerticalAlignment="Bottom"
 			        Margin="20,20,0,0">
 
@@ -81,7 +82,7 @@
 
 				<StackPanel Orientation="Horizontal">
 					<SymbolIcon Symbol="Emoji2" Margin="0,0,10,0" />
-					<TextBlock Text="World Record" />
+					<TextBlock Text="HIGH SCORE" />
 				</StackPanel>
 
 			</Button>

@@ -39,15 +39,12 @@ namespace UniversalWindowsProject
 			});
 		}
 
-		protected override void OnNavigatedTo(NavigationEventArgs e)
-		{
-			//read settings here
-			var localSettings = ApplicationData.Current.LocalSettings;
-		}
-
 
 		private async void QuadrantClicked(int index)
 		{
+			/*
+			 * We only want to handle a click event if it is the user's turn.
+			 */
 			if (_simon.SimonsTurn) return;
 
 
@@ -57,8 +54,7 @@ namespace UniversalWindowsProject
 				_simon.Reset();
 				_currentClickNo = 0;
 				_simon.Buzz();
-				_currentScore = 0;
-				CurrentScore.Text = "0";
+				CurrentScore.Text = "Your score was: " + _currentScore;
 				_totalClicks = 0;
 				BigX.Visibility = Visibility.Visible;
 				await Task.Delay(1800);
@@ -115,6 +111,7 @@ namespace UniversalWindowsProject
 
 		private void StartButton_OnClick(object sender, RoutedEventArgs e)
 		{
+			CurrentScore.Text = "Current Score: 0";
 			_simon.Start();
 			StartButton.Visibility = Visibility.Collapsed;
 			HighScoreButton.Visibility = Visibility.Collapsed;

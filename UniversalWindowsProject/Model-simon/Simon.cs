@@ -12,21 +12,27 @@ namespace Simon.Model
 		private readonly List<Quadrant> _quadrants;
 		private readonly Random _rnd;
 
-		private readonly Quadrant buzzer = new Quadrant(null, "Buzz.mp3");
+		// buzzer is a special quadrant that is not intended to be seen (shape is null)
+		// this is used only to make a buzz noise when the user gets it wrong.
+		private readonly Quadrant _buzzer = new Quadrant(null, "Buzz.mp3");
 
 		// create getter and sett and also assign a default value
 		public bool SimonsTurn { get; set; }
-		private int HighScore { get; set; }
 
 
 		public int TurnNo => _history.Count;
 
 
+		// provide access to quadrants without exposing the list.
 		private Quadrant GetAt(int i)
 		{
 			return _quadrants[i];
 		}
 
+		/*
+		 * Simon gets created with a list of quadrants
+		 * and an empty history.
+		 */
 		public Simon(List<Quadrant> quadrants)
 		{
 			_rnd = new Random();
@@ -66,11 +72,20 @@ namespace Simon.Model
 			SimonsTurn = false;
 		}
 
+		/*
+		 * the OnTrack method is called every time the user clicks a quadrant.
+		 * It returns true if the user has chosen the correct quadrant for the current click.
+		 * A return value of false means the user got it wrong.
+		 */
 		public bool OnTrack(int userChoice, int userClickNo)
 		{
+			// if the user has clicked more times than there are previous beeps,
+			// they can't be right - prevents the user clicking too much and breaking it.
 			if (userClickNo >= _history.Count) return false;
 
+			// look at the corresponding quadrant from the history
 			var historyQuad = _history[userClickNo];
+			// compare them, we can use == instead of .Equals because they are the same object in memory.
 			return GetAt(userChoice) == historyQuad;
 		}
 
@@ -90,6 +105,7 @@ namespace Simon.Model
 
 		public async void Tap(int index)
 		{
+			// get the corresponding quadrant
 			var quadrant = GetAt(index);
 			quadrant.MakeNoise();
 			quadrant.Brighten();
@@ -100,7 +116,7 @@ namespace Simon.Model
 
 		public void Buzz()
 		{
-			buzzer.MakeNoise();
+			_buzzer.MakeNoise();
 		}
 	}
 }
