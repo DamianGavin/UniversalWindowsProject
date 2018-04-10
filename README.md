@@ -41,7 +41,7 @@ called
 Storage.cs
 This is a where I implement local storage by initially wiping it and then assigning "highScore"
 to LocalSettings.Values.
-``
+```
 public void SaveHighScore(int score)
 		{
 			ApplicationData.Current.LocalSettings.Values["highScore"] = score;
