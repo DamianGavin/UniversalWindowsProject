@@ -45,7 +45,7 @@ to LocalSettings.Values.
 public void SaveHighScore(int score)
 		{
 			ApplicationData.Current.LocalSettings.Values["highScore"] = score;
-		}``
+		}```
 
 
 ### Prerequisites
