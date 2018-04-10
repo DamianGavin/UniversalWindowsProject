@@ -23,6 +23,29 @@ question  “why will the user open this app for a second time?”
 ```
 Repository for 3rd Year Module Mobile Applications Development 2 (2018)
 
+### Code
+As with all Universal Windows Packages, Visual Studio provided me with Two pages, App.xaml and 
+MainPage.xaml. These pages each have a file associated with them called the code behind.
+App.xaml.cs and MainPage.xaml.cs.
+On top of these pages I have created Two folders: Model-simon, and Sounds. I also made a page 
+called StatsPage.xaml with its associated StatsPage.xaml.cs.
+
+Model-simon contains Three C# files called Quadrant.cs, Simon.cs and Storage.cs. 
+
+The Quadrant.cs is to represent one of the 4 circles that the user can click. It consists of 
+an Ellipse filled with a colour and a Sound.
+
+Simon.cs is where simon gets created with a list of quadrants and an empty history. I have methods 
+called 
+
+Storage.cs
+This is a where I implement local storage by initially wiping it and then assigning "highScore"
+to LocalSettings.Values.
+`` public void SaveHighScore(int score)
+		{
+			ApplicationData.Current.LocalSettings.Values["highScore"] = score;
+		}``
+
 
 ### Prerequisites
 
