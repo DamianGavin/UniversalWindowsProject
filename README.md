@@ -47,6 +47,29 @@ public void SaveHighScore(int score)
 			ApplicationData.Current.LocalSettings.Values["highScore"] = score;
 		}
 ```
+My Sounds folder contains Five mp3 files containing the different sounds I use in my App.
+
+MainPage.xaml and StatsPage.xaml are used to design the layout and colours of my App. 
+My StatsPage.xaml.cs page is used to control navigation between pages in the App, and also
+contains the logic for the 3 buttons available on the highscore page.
+```
+private void ResetButton_OnClick(object sender, RoutedEventArgs e)
+		{
+			ButtonPanel.Visibility = Visibility.Visible;
+		}
+
+		private void YesButton_OnClick(object sender, RoutedEventArgs e)
+		{
+			new Storage().SaveHighScore(0);
+			HighScore.Text = "0";
+			ButtonPanel.Visibility = Visibility.Collapsed;
+		}
+
+		private void NoButton_OnClick(object sender, RoutedEventArgs e)
+		{
+			ButtonPanel.Visibility = Visibility.Collapsed;
+		} 
+```
 
 
 ### Prerequisites
