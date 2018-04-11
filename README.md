@@ -32,15 +32,18 @@ called StatsPage.xaml with its associated StatsPage.xaml.cs.
 
 Model-simon contains Three C# files called Quadrant.cs, Simon.cs and Storage.cs. 
 
-The Quadrant.cs is to represent one of the 4 circles that the user can click. It consists of 
-an Ellipse filled with a colour and a Sound.
+The Quadrant.cs I created a Quadrant class to encapsulate the behaviour of one section of the game
+that consists of a Shape and a Sound. I used async methods to perform actions that would otherwise
+block the UI thread such as playing sounds. I gave the methods descriptive and consise names to make 
+the code more readable.
 
-Simon.cs is where simon gets created with a list of quadrants and an empty history. I have methods 
-called 
+Simon.cs encapsulates the game itself. It keeps track of everything required to play the game. I have
+extensively commented the code. 
 
 Storage.cs
 This is a where I implement local storage by initially wiping it and then assigning "highScore"
-to LocalSettings.Values.
+to LocalSettings.Values. It provides a convenient way to access local storage without needeing to access
+it directly each time. It also makes the code easier to understand.
 ```
 public void SaveHighScore(int score)
 		{
@@ -50,6 +53,7 @@ public void SaveHighScore(int score)
 My Sounds folder contains Five mp3 files containing the different sounds I use in my App.
 
 MainPage.xaml and StatsPage.xaml are used to design the layout and colours of my App. 
+
 My StatsPage.xaml.cs page is used to control navigation between pages in the App, and also
 contains the logic for the 3 buttons available on the highscore page.
 ```
